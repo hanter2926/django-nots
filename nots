@@ -1,0 +1,994 @@
+✅ Day 1 – Django 
+
+Q1- What is Django? Why do we need to use this?
+Django is a high-level Python web framework used to build websites and web applications quickly and efficiently. It follows the MVT (Model-View-Template) architecture and comes with many built-in features.
+👉 In simple words:
+ Django helps developers create powerful websites without writing everything from scratch.
+
+🔥 Why do we use Django?
+Here are the main reasons:
+1. ⚡ Fast Development
+Django provides ready-made components (like admin panel, authentication).
+You can build projects much faster compared to starting from zero.
+2. 🔒 Security
+Protects against common attacks like:
+SQL Injection
+Cross-Site Scripting (XSS)
+CSRF attacks
+Built-in security features make apps safer.
+3. 🧩 Built-in Features
+Admin panel (no need to build manually)
+User authentication system
+ORM (database handling without SQL)
+4. 📈 Scalable
+Used by large platforms like:
+Instagram
+Pinterest
+Can handle both small and large projects.
+5. 🧼 Clean & Organized Code
+Follows DRY (Don’t Repeat Yourself) principle
+Makes code easy to maintain and reuse
+6. 🌐 Works with Databases Easily
+Supports databases like SQLite, MySQL, PostgreSQL
+You don’t need to write complex SQL queries
+
+Q2- How to set up a basic project in Django?
+1. Install Django
+First, make sure you have Python installed:-
+pip install django
+Check installation:-
+django-admin --version
+
+2. Create a New Project
+django-admin startproject myproject
+👉 This creates a folder like:
+myproject/
+├── manage.py
+└── myproject/
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    ├── asgi.py
+    └── wsgi.py
+
+
+
+3. Run the Server
+First Go inside The project folder:- cd myproject
+For Running Project:- python manage.py runserver
+
+👉 Open browser:
+http://127.0.0.1:8000/
+You’ll see Django’s welcome page 🎉
+
+
+4. Create an App
+Django projects contain apps.
+python manage.py startapp myapp
+👉 Folder created:
+myapp/
+├── views.py
+├── models.py
+├── admin.py
+└── apps.py
+
+5. Register the App
+Open settings.py and add:-
+INSTALLED_APPS = [
+   'myapp',
+]
+
+6. Create a View
+In views.py file:-
+from django.http import HttpResponse
+
+def home(request):
+   return HttpResponse("Hello, Django!")
+
+
+7. Connect URL
+Edit urls.py file:-
+from django.contrib import admin
+from django.urls import path
+from myapp.views import home
+
+urlpatterns = [
+   path('admin/', admin.site.urls),
+   path('', home),
+]
+
+8. Run Again
+python manage.py runserver
+👉 Open:
+http://127.0.0.1:8000/
+
+Q3- What is the admin panel?
+The Admin Panel (Django Admin) is a built-in dashboard that allows you to manage your website’s data without coding.
+👉 In simple words:
+ It is a ready-made control panel where you can add, edit, delete, and view data easily.
+
+🎯 Why is Admin Panel useful?
+1. ⚡ No need to build backend manually
+Django already gives you a fully functional admin interface
+2. 📝 Easy Data Management
+You can manage:
+Users 👤
+Products 🛒
+Blog posts 📰
+Database records
+3. 🔐 Secure Access
+Only authorized users (admin/staff) can login
+4. ⏱️ Saves Development Time
+No need to create CRUD (Create, Read, Update, Delete) pages manually
+
+⚙️ How to Access Admin Panel
+1. Create Superuser
+python manage.py createsuperuser
+2. Run Server
+python manage.py runserver
+3. Open in Browser👉 http://127.0.0.1:8000/admin/
+Login with your credentials
+
+🔧 How to Show Your Data in Admin
+In admin.py:
+from django.contrib import admin
+from .models import MyModel
+
+admin.site.register(MyModel)
+👉 Now your model appears in admin panel 🎉
+
+Q4- How to create a project using Django Command And how to create any app in Django using command?
+
+Similar As Point Q2
+
+Q5- What  is frame work and what is a library?
+🧠 What is a Framework?
+A framework is a pre-built structure that provides a complete foundation to develop applications.
+👉 It controls the flow of the program and tells you how to build your project.
+📌 Example:
+Django
+Angular
+🎯 Key Points:
+You follow the framework’s rules
+It decides how your code runs
+Provides ready-made tools & structure
+👉 This is called Inversion of Control (framework calls your code)
+
+📚 What is a Library?
+A library is a collection of pre-written functions or tools that you can use when needed.
+👉 You are in control — you decide when and where to use it
+📌 Example:
+NumPy
+jQuery
+🎯 Key Points:
+You call the library
+No strict structure
+Used to perform specific tasks
+
+⚖️ Difference Between Framework & Library
+Feature
+Framework 🏗️
+Library 📚
+Control
+Framework controls flow
+You control flow
+Usage
+Full structure
+Specific functions
+Flexibility
+Less flexible
+More flexible
+Example
+Django
+NumPy
+
+
+🎯 Simple Example
+Using a Framework = Like building a house with a fixed blueprint 🏠
+Using a Library = Like using tools (hammer, drill) when needed 🔧
+
+🧾 Final Short Answer (Exam Ready)
+Framework: A pre-defined structure that controls application flow.
+Library: A collection of functions used by the developer when needed.
+
+
+
+Main Start:- How TO Make A Basic Django Project
+⚙️ 1. Install Django
+First, make sure you have Python installed:-
+pip install django
+Check installation:-
+django-admin --version
+
+📁 2. Create a New Project
+django-admin startproject myproject
+👉 This creates a folder like:
+myproject/
+├── manage.py
+└── myproject/
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    ├── asgi.py
+    └── wsgi.py
+
+
+
+▶️ 3. Run the Server
+First Go inside The project folder:- cd myproject
+For Running Project:- python manage.py runserver
+
+👉 Open browser:
+http://127.0.0.1:8000/
+You’ll see Django’s welcome page 🎉
+
+✅ Day 2 – APP Create / Setting And URL Setup
+
+Step 1:- cd myproject
+Step 2:- Create an App in Django
+    ✅ Command:
+    python manage.py startapp appname
+Step 3:- In your app create urls.py or Write required code in this file MY APP
+Step 4:- Update your settings.py In Project MY PROJECT
+
+=> Inside Templates Folder There are All HTML Files that Existed/Stored And Inside Static Folder All CSS And Images Files Are Existed.
+
+
+Project  Folder => Setting.PY
+
+"""
+Django settings for myproject project.
+
+Generated by 'django-admin startproject' using Django 6.0.1.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/6.0/topics/settings/
+
+For the full list of settings and their values, see
+https://docs.djangoproject.com/en/6.0/ref/settings/
+"""
+
+# First Changes
+import os 
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-**nj1_v0qudh+93myc7=3@+s&l)dn(6a9esk10tz3v$rl#55zc'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = []
+
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'First' ##Second Changes App Name
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'Tridev.urls'##Check Changes Project name
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], ##Third Changes
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = 'Tridev.wsgi.application'##Check Changes Project Name
+
+# Database
+# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+# Password validation
+# https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+# Internationalization
+# https://docs.djangoproject.com/en/6.0/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_TZ = True
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/6.0/howto/static-files/
+
+STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] ##Fourth Changes
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR/ 'media'
+
+
+
+APP Folder => urls.py
+
+
+from django.contrib import admin
+from django.urls import path,include
+
+
+urlpatterns = [
+
+]
+
+
+Project Folder => urls.py
+
+
+"""
+URL configuration for myproject project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/6.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('First.urls')),## App Name 
+]
+
+urlpatterns += static( settings.MEDIA_URL ,document_root = settings.MEDIA_ROOT)
+✅ Day  3 – CreateSuper User 
+
+To Create a super user or admin panel we have to run this command:-
+
+Step 1 :- First Get In The Change Directory :- cd myproject
+
+Step 2 :- To connect Data base we have to run These command
+                First :- python manage.py makemigrations
+                Second :- python manage.py migrate
+
+Run Command In Your My Project Directory :-python manage.py createsuperuser
+
+NOTE-> 
+ALWAYS CHANGE YOUR PROJECT NAME in settings.py in project folder
+in this line
+WSGI_APPLICATION = 'myproject.wsgi.application'
+
+TO this Eg:-
+WSGI_APPLICATION = 'Tridev.wsgi.application'
+
+
+✅ Day  4 – Model And Admin Register
+
+
+APP Folder => models.py
+
+# It Is used to create table in the data base
+# Create your models here 
+
+Step 1 :- First Get In The Change Directory :- cd myproject
+.
+# When Ever we use any image in my model we need to run pip install pillow in the terminal
+
+from django.db import models
+
+class Product(models.Model):
+    product_name = models.CharField(max_length=255)
+    product_price = models.DecimalField(max_digits=10, decimal_places=2)
+    product_description = models.TextField()
+    product_image = models.ImageField(upload_to='products/')
+
+    def __str__(self):
+        return self.product_name
+
+#Whenever we create a model in models.py we need to run two commands in the terminal
+#1. python manage.py makemigrations
+
+#2. python manage.py migrate
+
+
+APP Folder => admin.py
+
+
+# Register your models here.
+
+from django.contrib import admin
+from .models import Product
+
+admin.site.register(Product)
+
+Run the Server
+First Go inside The project folder:- cd myproject
+For Running Project:- python manage.py runserver
+
+👉 Open browser:
+http://127.0.0.1:8000/
+You’ll see Django’s welcome page 🎉
+
+✅ Day  5 – Connecting PGSQL 
+
+How To Connect Pgsql In Django:-
+
+Step 1:- Run This Command In The Terminal pip install psycopg2 
+
+Step 2 :- We have to edit DATA base connectivity PART in settings.py
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_db_name',
+        'USER': 'postgres',
+        'PASSWORD': 'your_password', 
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+Step 3 :- Creating Data Base IN PGSQL With Same Name
+
+Step 4 :- Running Two Command 
+               python manage.py makemigrations
+               python manage.py migrate
+ Run the Server
+
+
+
+✅ Day  6 – Category , Product And HTML Tamplate 
+
+APP Folder => models.py
+
+from django.db import models
+
+# Category Model
+class Category(models.Model):
+    category_name = models.CharField(max_length=255)
+    category_image = models.ImageField(upload_to='categories/', null=True, blank=True)
+
+    def __str__(self):
+        return self.category_name
+
+
+# Product Model
+class Product(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
+    product_name = models.CharField(max_length=255)
+    product_price = models.DecimalField(max_digits=10, decimal_places=2)
+    product_description = models.TextField()
+    product_image = models.ImageField(upload_to='products/')
+
+    def __str__(self):
+        return self.product_name
+
+
+Step 1 :- Running Two Command 
+               python manage.py makemigrations
+               python manage.py migrate
+
+APP Folder => views.py
+
+from django.shortcuts import render
+from .models import *  ## Importing all models from the current app's models.py file
+
+def category_products(request):
+    categories = Category.objects.prefetch_related('products').all()
+    return render(request, 'category_products.html', {'categories': categories})
+
+APP Folder =>admin.py
+
+from django.contrib import admin
+from .models import Product, Category
+
+admin.site.register(Product)
+admin.site.register(Category)
+
+APP Folder => urls.py
+
+from django.contrib import admin
+from django.urls import path
+from .views import * ## Importing all views from the current app's views.py file
+
+urlpatterns = [
+    path('categorie', category_products, name='category_products'),
+]
+
+Step 2 :- Make templates Folder Outside The APP Folder And Project Folder
+
+Step 3 :- Make A HTML File in (templates) File Name - category_products.html
+
+
+Templates folder => category_products.html
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products by Category</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .category {
+            margin-bottom: 50px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .category-header img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: green;
+            font-weight: bold;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Products by Category</h1>
+
+{% for category in categories %}
+<div class="category">
+
+    <div class="category-header">
+        {% if category.category_image %}
+            <img src="{{ category.category_image.url }}" alt="{{ category.category_name }}">
+        {% endif %}
+        <h2>{{ category.category_name }}</h2>
+    </div>
+
+    <div class="products">
+        {% for product in category.products.all %}
+        <div class="product-card">
+            <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}">
+            
+            <div class="product-name">{{ product.product_name }}</div>
+            
+            <div class="price">₹{{ product.product_price }}</div>
+            
+            <div class="description">
+                {{ product.product_description|truncatewords:10 }}
+            </div>
+        </div>
+        {% empty %}
+        <p>No products available in this category.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endfor %}
+
+</body>
+</html>
+Run the Server Now This is The Link :-  http://127.0.0.1:8000/categorie
+
+
+✅ Day  7 :- Find Code In Webpage
+
+How to find the code of any webpage?
+
+Step 1 :- First Have To Visit exactly on that web page and copy the unique url.
+Like here we copied categorie:- 
+http://127.0.0.1:8000/categorie
+
+Step 2 :- Now We have to visit VSCode And Search for urls.py by using ctrl + P Shortcut and make sure this is the app url not project url.
+ctrl + p #urls.py
+
+Step 3:- in urls.py we have to search categorie word by using ctrl + f short cut
+ctrl + f #categorie
+
+Step 4:- In urls.py there are three parts of an url
+              First one is url pattern name 
+              second function name 
+              Third url name 
+
+So we have to click on the function name by using ctrl + click. 
+It redirects to the exact function which is in views.py. In that function we can see exactly the HTML file name.
+
+So this is how you can find the exact HTML code of that webpage.
+
+
+
+✅ Day  8 :- Product On HTML
+
+
+APP Folder => urls.py
+
+path('products', product_list, name='products_list'),
+
+
+APP Folder => views.py
+
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'product_list.html', {'products': products})
+
+
+Templates folder => product_list.html
+
+<!-- templates/product_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f5f5f5;
+            margin:0;
+            padding:20px;
+        }
+
+        h1{
+            text-align:center;
+        }
+
+        .container{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            padding:15px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .card img{
+            width:100%;
+            height:200px;
+            object-fit:cover;
+            border-radius:10px;
+        }
+
+        .price{
+            color:green;
+            font-weight:bold;
+            font-size:20px;
+        }
+    </style>
+
+</head>
+<body>
+<h1>All Products</h1>
+<div class="container">
+{% for product in products %}
+<div class="card">
+    <img src="{{ product.product_image.url }}" alt="">
+    <h2>{{ product.product_name }}</h2>
+    <p class="price">₹{{ product.product_price }}</p>
+    <p>{{ product.product_description }}</p>
+    <p><strong>Category:</strong> {{ product.category }}</p>
+</div>
+{% endfor %}
+</div>
+</body>
+</html>
+
+
+
+✅ Day  9 :- CRUD Operation.
+
+## get method :-                             
+=> it is used to show/fetch data from database. 
+=> it is less secure , because it is visible to anyone. 
+
+
+## post method :-
+=> it is used to store or send data in database .
+
+
+What is a form ?
+=> by using any form we take input data from any user and stores/send in database. 
+=> 
+=> in any form POST method is used.
+
+
+## EDIT => Update  , PUT method 
+
+, Suppose there is a form , in which Name : Tridev  
+and we edit it , Name : Vicky 
+
+and click on Update Button =>   
+
+            POST    GET               PUT   DELETE
+## CRUD : Create , Retrieve/ Read , Update, Delete 
+
+
+## Retrieve => we have to use GET method , to fetch or show data from database. 
+## Create => we have to use POST method, to store data in the database . 
+## Update => we have to use PUT method to edit or update any data in the database. 
+## Delete => we have to use DELETE method.
+
+=>Main.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student CRUD</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="text-primary">Student CRUD Operation</h1>
+        <p class="text-muted">Django CRUD Project</p>
+        <p>HELLO Tridev</p>
+    </div>
+
+    {% block content %}
+    <!-- Content will be inserted here -->
+    {% endblock %}
+
+    <div class="text-center mt-4">
+        <p class="text-secondary">&copy; 2026 Student CRUD. All rights reserved.</p>
+    </div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+File:- OTHER.html
+
+We have to Keep only common code in Main.html
+and 
+we have to use this main.html in another html file.
+Just Like This :- 
+
+{% extends 'main.html' %}
+{% block content %} 
+<div class="card shadow p-4">
+    <div class="d-flex justify-content-between mb-3">
+        <h3>Student List</h3>
+        <a href="/add/" class="btn btn-success">+ Add Student</a>
+    </div>
+</div>
+{% endblock %}
+✅ Benefits of main.html File
+1. Reusable Common Layout
+main.html contains common parts of website pages like:
+Header
+Navbar
+Footer
+Sidebar
+CSS / JS links
+Instead of writing these again and again in every page, you keep them in one file.
+2. Saves Time
+You write code once in main.html and use it on multiple pages.
+Example:
+Home page
+About page
+Contact page
+All can use the same layout.
+3. Easy Maintenance
+If you want to change navbar or footer:
+✅ Change only in main.html
+✅ Simple Meaning
+main.html = Master page / Base template / Parent layout
+Other pages inherit it.
+✅ Real-Life Example
+Think of main.html like a house design template.
+Every room has same:
+Doors
+Windows
+Roof
+Only room content changes.
+✅ Final Answer
+main.html file is useful because it helps create a common website layout, saves coding time, makes maintenance easier, and keeps code clean using template inheritance.
+
+✅ Day  10 :- CRUD Operation.
+
+# Insert Data
+def add_student(request):
+    if request.method == 'POST':
+        Student.objects.create(
+            std_name=request.POST['name'],
+            std_roll=request.POST['roll'],
+            std_image=request.FILES['image'],
+            std_email=request.POST['email'],
+            std_city=request.POST['city']
+        )
+        return redirect('student_list')
+    return render(request, 'add.html')
+
+# In This Function We have to firstly check the method is POST or not,
+# if it is POST then we will create a new student object with the data
+#
+#             std_name=request.POST['name'],
+#             std_roll=request.POST['roll'],
+#             std_image=request.FILES['image'],
+#             std_email=request.POST['email'],
+#             std_city=request.POST['city']
+#std_name is the column name in the Student model and request.POST['name']
+# is the name attribute of add student form similarly image email and city
+
+
+✅ Day  11 :- CRUD Operation Update And Delete.
+
+# # Delete Data
+def delete_student(request, id):
+    data = Student.objects.get(id=id)
+    data.delete()
+    return redirect('student_list')
+
+
+# # Update Data
+def edit_student(request, id):
+    data = Student.objects.get(id=id)
+
+
+    if request.method == 'POST':
+        data.std_name = request.POST['name']
+        data.std_roll = request.POST['roll']
+        data.std_email = request.POST['email']
+        data.std_city = request.POST['city']
+
+
+        if request.FILES.get('image'):
+            data.std_image = request.FILES['image']
+
+
+        data.save()
+        return redirect('student_list')
+
+
+    return render(request, 'edit.html', {'data': data})
+
+
+
+
+
+
+✅ Day  12 :- CRUD Operation Update And Delete.
+
+  <form method="post" enctype="multipart/form-data">
+     <!-- we have to use enctype="multipart/form-data" Because we have to store multiple type of data by using this form. -->
+       {% csrf_token %}
+        <!-- <input type="hidden" name="csrfmiddlewaretoken" value="QX0iaE2Lv17yf1kcaKPIaz2SL2mj3iFDcdAobx6ccQUmj6lm3tIYWHtiGuezcBze"> -->
+        <!-- cross site request forgery token is used to prevent cross site request forgery attack.
+        It is a security measure to protect against malicious attacks that can occur when a user is tricked into submitting a form from another website.
+        By including the {% csrf_token %} in the form, Django generates a unique token for each form submission, which helps to ensure that the request is coming from a trusted source and not from an attacker.
+        This token is then validated on the server side when the form is submitted, providing an additional layer of security for the application. -->
+       
+
+
+
+
+
+
+
+
+
+
+
