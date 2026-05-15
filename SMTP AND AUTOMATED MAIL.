@@ -1,0 +1,92 @@
+Two Questions To Explore:-
+How To Send Email In Django ?
+What Is Soft Delete And Hard Delete ?
+
+
+Firstly we have to create a login and sign up page with role Coolum
+       In which role will be assigned by admin side by default a user will be created as a student.
+
+Register form fields 
+       Full name 
+       Email
+       Password
+       Conform Password
+  
+Whenever a new user registers or creates a profile successfully there is a welcome message will be sent to the user email.
+
+a student can see his own profile and edit his profile and a teacher can add student delete student make active and inactive student.
+
+
+YT VIDEO LINK :- How To Set Up Gmail SMTP Server - Full Guide
+
+
+✅ Day  14 :- Virtual Enviroment Setup
+
+
+Step 1:- Run This Command For Installing Virtual Environment 
+         (python -m venv myenv)
+
+
+Step 2:- Run THis COmmand For Activation
+         For Windows (myenv\Scripts\activate)
+         For Mac/Linux(source myenv/bin/activate)
+
+
+Step 3:- Now You Have To Install Django 
+         (pip install django)
+
+
+Step 4:- Now Run (pip install pscopyg2) For Connecting Database
+
+
+Step 5:- Now Run Two Command
+         (python manage.py makemigrations)
+         (python manage.py migrate)
+
+
+Step 6:- Run This Command For Image Storage
+         (pip install pillow)
+
+
+Step 7:- Create Super User
+         (python manage.py createsuperuser)
+
+
+
+
+H.W :- Make A New Advance CRUD Project In Virtual Environment
+ 
+✅ Day  15 :- Seeder File And Serch and Filter
+
+
+Step 11:- Create a Seed File
+        (App)     students/
+                  │
+                  ├── management/
+                  │   ├── __init__.py
+                  │   └── commands/
+                  │       ├── __init__.py
+                  │       └── seed_students.py
+
+
+         students/management/commands/seed_students.py
+
+
+         Enter Student Seeded data
+
+
+Step 12:- Run Migrations First
+            python manage.py makemigrations
+            python manage.py migrate
+
+
+Step 13:- Run Seeder Command
+            python manage.py seed_students
+
+
+Step 14:- Add a serching where we can search using name , rool no , city , class
+            Updating View.py and HTML File
+
+
+Step 15:- Adding Filter And Paginator
+         Updating View.py and HTML File
