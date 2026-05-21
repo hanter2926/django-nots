@@ -1,0 +1,32 @@
+✅ Day  19:- E-Commerce Requirement flow.
+
+
+About Us
+
+In This Page we Can keep Content Like Over team , over mission , over vision, over value, Organization Detail.
+
+Product Page
+
+Show All The Product And User Can Use Filter Like:- Category Wise , Pricing.
+
+Category Page
+
+There Are Multiple Categories And Show How Many Products Are There In the Category.
+
+
+Admin Site.
+
+First Create A Model With User Like:- Custom user= Full Name, email, mobile no, DOB, Address, Alternate Mobile no , Profile Image, Gender.
+
+Second Category = Category Image, Category Name, category Product_Stock (Quantity).
+
+Third Product= Product name, product image, product description, product category(Foreign Key), product Original price, Product Sale price.
+
+Fourth CheckBox = Top_Product, Best Saller, Limited Offer/Deal.
+
+Note:- In The Admin Panel During Creation Of Product In The Product Form If We Checked The Check Box of Top Product Then This Should We Apper In The Top Product Section.Similarly If we Checked The Check Box Of Limited Offer Or Best Saler Then Their is badge Shold Be apper in The Product Card.
+
+And Discount parcentage Shoul Be Calculted By Using CP And SP And It Shuld Be Apper In The Product Card As A Discount Percentage Badge.
+
+App Name Should Be Flipkar And Project Name 
+
