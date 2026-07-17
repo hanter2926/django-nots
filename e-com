@@ -1,0 +1,508 @@
+Module 1: Inventory
+Search Functionality
+Search inputs: Product Name or SKU Number
+Action trigger: Search Button
+Search Results Table (e.g., querying "PT56")
+
+Product Image
+Product Name
+Stock
+Action
+Thumbnail display
+Name of the product
+Available quantity
+Associated action buttons
+
+
+
+Module 2: My Orders & Invoices
+Listing & Filters
+Proper order listing interface
+Search Bar for general queries
+Date Filter for sorting by timeframe
+Product Name field/filter
+Action Column Buttons
+
+Button
+Function
+Preview
+Opens a preview of the order invoice
+View
+Opens full details of the order
+Download
+Downloads the invoice file
+Delete
+Deletes the selected order
+
+
+Module 3: Feedback System
+Customer Interface (Frontend)
+Product Name: Auto-selected (based on the current item)
+Customer Message: Text input for the user's review
+Rating: Star rating selection (number of stars)
+Action Trigger: Submit Button
+Admin Dashboard (Backend)
+Display View: Lists all submitted customer feedback
+Action Column Buttons:
+View: Read the complete feedback
+Approve: Accept the feedback
+Reject: Decline or hide the feedback
+System Configuration
+Create Cloudinary Credentials (required for hosting and managing product images/media).
+✅ Day  28:- TASKs 05/07/2026
+
+Explore these topics
+
+Q1 What is an API? 
+
+Q2. What is FastAPI? 
+
+Q3. How to Set Up FastAPI using some commands ?
+
+Q4. What are the Use Cases for FastAPI? 
+
+Q5. Why use FastAPI if we have DRF (Django Rest Framework)? 
+
+Q6. What is a "Barrier" Token? (Bearer Token) 
+
+Q7. What is Swagger API and Swagger Documentation? 
+
+
+
+✅ Day  29:- TASKs 07/07/2026
+
+How to write Swagger annotations for a POST API in Laravel to create a product with name, description, and price fields?
+
+If you're using Swagger (OpenAPI) in Laravel with L5-Swagger, you can document your POST API using PHP attributes (OpenAPI v4) or PHPDoc annotations (older versions).
+Example: Create Product API
+Suppose your API is:
+POST /api/products
+
+Request Body:
+{
+    "name": "iPhone 16",
+    "description": "Latest Apple iPhone",
+    "price": 999.99
+}
+
+Using PHP Attributes (Recommended for Laravel 10/11)
+use OpenApi\Attributes as OA;
+
+#[OA\Post(
+    path: "/api/products",
+    summary: "Create Product",
+    description: "Create a new product",
+    tags: ["Products"],
+    requestBody: new OA\RequestBody(
+        required: true,
+        content: new OA\JsonContent(
+            required: ["name", "description", "price"],
+            properties: [
+                new OA\Property(
+                    property: "name",
+                    type: "string",
+                    example: "iPhone 16"
+                ),
+                new OA\Property(
+                    property: "description",
+                    type: "string",
+                    example: "Latest Apple iPhone"
+                ),
+                new OA\Property(
+                    property: "price",
+                    type: "number",
+                    format: "float",
+                    example: 999.99
+                ),
+            ]
+        )
+    ),
+    responses: [
+        new OA\Response(
+            response: 201,
+            description: "Product created successfully"
+        ),
+        new OA\Response(
+            response: 422,
+            description: "Validation error"
+        )
+    ]
+)]
+public function store(Request $request)
+{
+    // Your code here
+}
+
+
+Using PHPDoc Annotations (Older L5-Swagger)
+/**
+ * @OA\Post(
+ *     path="/api/products",
+ *     tags={"Products"},
+ *     summary="Create Product",
+ *     description="Create a new product",
+ *
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\JsonContent(
+ *             required={"name","description","price"},
+ *
+ *             @OA\Property(
+ *                 property="name",
+ *                 type="string",
+ *                 example="iPhone 16"
+ *             ),
+ *
+ *             @OA\Property(
+ *                 property="description",
+ *                 type="string",
+ *                 example="Latest Apple iPhone"
+ *             ),
+ *
+ *             @OA\Property(
+ *                 property="price",
+ *                 type="number",
+ *                 format="float",
+ *                 example=999.99
+ *             )
+ *         )
+ *     ),
+ *
+ *     @OA\Response(
+ *         response=201,
+ *         description="Product created successfully"
+ *     ),
+ *
+ *     @OA\Response(
+ *         response=422,
+ *         description="Validation Error"
+ *     )
+ * )
+ */
+public function store(Request $request)
+{
+    //
+}
+
+
+If you're using a Form Request
+For example:
+class StoreProductRequest extends FormRequest
+{
+    public function rules()
+    {
+        return [
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+        ];
+    }
+}
+
+Your controller can be:
+public function store(StoreProductRequest $request)
+{
+    $product = Product::create($request->validated());
+
+    return response()->json([
+        'message' => 'Product created successfully',
+        'data' => $product
+    ], 201);
+}
+
+
+Example Swagger UI
+Swagger will display a request body similar to:
+{
+  "name": "iPhone 16",
+  "description": "Latest Apple iPhone",
+  "price": 999.99
+}
+
+
+Generate the Swagger Documentation
+After adding the annotations, regenerate the documentation:
+php artisan l5-swagger:generate
+
+Then open:
+http://localhost/api/documentation
+
+This will show the Create Product endpoint with the request body and response definitions.
+
+
+
+
+Q- How to set up a project in FastAPI for CRUD operations?
+A clean way to set up a FastAPI CRUD project is to separate your application into modules for routes, models, schemas, database configuration, and CRUD logic.
+📁 Project Folder Hierarchy
+fastapi-crud/
+│── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── database.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── crud.py
+│   ├── routes.py
+│   └── config.py
+│
+├── requirements.txt
+├── .env
+└── venv/
+
+
+Step 1: Create Virtual Environment
+Command 1-> python -m venv venv
+Command 2-> venv\Scripts\activate
+
+Step 2: Install Dependencies
+Command 3-> pip install fastapi uvicorn sqlalchemy pydantic python-dotenv
+Save dependencies:
+Command 4-> pip freeze > requirements.txt
+
+Step 3: Database Configuration
+Now create folders 
+First folder -> fastapi-crud 
+Now under fastapi-crud create app folder
+
+Now create files (under app folder ) :-
+database.py
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+DATABASE_URL = "sqlite:///./test.db"
+
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"check_same_thread": False}
+)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
+
+Base = declarative_base()
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+Step 4: Create Model
+models.py
+from sqlalchemy import Column, Integer, String
+from .database import Base
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String)
+    email = Column(String, unique=True)
+
+
+Step 5: Create Pydantic Schemas
+schemas.py
+from pydantic import BaseModel
+
+
+class UserCreate(BaseModel):
+    name: str
+    email: str
+
+
+class UserResponse(UserCreate):
+    id: int
+
+    class Config:
+        from_attributes = True
+
+
+Step 6: CRUD Functions
+crud.py
+from sqlalchemy.orm import Session
+from . import models, schemas
+
+
+def create_user(db: Session, user: schemas.UserCreate):
+    db_user = models.User(
+        name=user.name,
+        email=user.email
+    )
+
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+
+    return db_user
+
+
+def get_users(db: Session):
+    return db.query(models.User).all()
+
+
+def get_user(db: Session, user_id: int):
+    return db.query(models.User).filter(
+        models.User.id == user_id
+    ).first()
+
+
+def update_user(db: Session, user_id: int, user: schemas.UserCreate):
+    db_user = get_user(db, user_id)
+
+    if db_user:
+        db_user.name = user.name
+        db_user.email = user.email
+
+        db.commit()
+        db.refresh(db_user)
+
+    return db_user
+
+
+def delete_user(db: Session, user_id: int):
+    db_user = get_user(db, user_id)
+
+    if db_user:
+        db.delete(db_user)
+        db.commit()
+
+    return db_user
+
+
+Step 7: API Routes
+routes.py
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+
+from .database import get_db
+from . import crud, schemas
+
+router = APIRouter(prefix="/users", tags=["Users"])
+
+
+@router.post("/", response_model=schemas.UserResponse)
+def create(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    return crud.create_user(db, user)
+
+
+@router.get("/", response_model=list[schemas.UserResponse])
+def read_all(db: Session = Depends(get_db)):
+    return crud.get_users(db)
+
+
+@router.get("/{user_id}", response_model=schemas.UserResponse)
+def read(user_id: int, db: Session = Depends(get_db)):
+    user = crud.get_user(db, user_id)
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    return user
+
+
+@router.put("/{user_id}", response_model=schemas.UserResponse)
+def update(
+    user_id: int,
+    user: schemas.UserCreate,
+    db: Session = Depends(get_db)
+):
+    db_user = crud.update_user(db, user_id, user)
+
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    return db_user
+
+
+@router.delete("/{user_id}")
+def delete(user_id: int, db: Session = Depends(get_db)):
+    user = crud.delete_user(db, user_id)
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    return {"message": "Deleted successfully"}
+
+
+Step 8: Main Application
+main.py
+from fastapi import FastAPI
+
+from .database import Base, engine
+from .routes import router
+
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI(title="FastAPI CRUD")
+
+app.include_router(router)
+
+
+Step 9: Run the Server
+Command 5-> uvicorn app.main:app --reload
+
+Open:
+Swagger UI: http://127.0.0.1:8000/docs
+ReDoc: http://127.0.0.1:8000/redoc
+
+CRUD Endpoints
+Method
+Endpoint
+Description
+POST
+/users/
+Create user
+GET
+/users/
+Get all users
+GET
+/users/{id}
+Get user by ID
+PUT
+/users/{id}
+Update user
+DELETE
+/users/{id}
+Delete user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+✅ Day 30:- TASKs 12/07/2026
+Module 4: Product Detail Page Support
+Need Help Functionality
+Interface Addition: "Need Help" Button on the product detail page.
+Action Trigger: Clicking the button opens a modal popup form.
+Popup Form Elements
+Field / Element
+Specification
+Product Name
+Auto-selected and pre-filled based on the currently viewed product
+Your Query
+Multi-line text input (textarea) for the user to detail their question
+Action Trigger
+Submit Button
+
+
+
+  
+
+
